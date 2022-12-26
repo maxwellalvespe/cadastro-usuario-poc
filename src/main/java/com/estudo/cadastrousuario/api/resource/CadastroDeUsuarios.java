@@ -28,11 +28,8 @@ public class CadastroDeUsuarios {
 
 
     @PostMapping
-    public ResponseEntity<UsuarioResponse> cadastarUsuario( @RequestBody UsuarioRequest usuarario) {
+    public ResponseEntity<UsuarioResponse> cadastarUsuario( @Valid @RequestBody UsuarioRequest usuarario) {
 
-        if(isNull(usuarario.getNome())){
-            throw new BaseException("Campo usuario não pode ser null");
-        }
         Usuario usuario = mapper.toUsuario(usuarario);
 
         return ResponseEntity.created(URI.create("/usuario")).body(mapper.toResp(usuario));
