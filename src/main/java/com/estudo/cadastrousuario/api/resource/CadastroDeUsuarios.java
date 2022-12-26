@@ -1,5 +1,6 @@
 package com.estudo.cadastrousuario.api.resource;
 
+import com.estudo.cadastrousuario.api.exception.BaseException;
 import com.estudo.cadastrousuario.api.mapper.UsuarioMapper;
 import com.estudo.cadastrousuario.api.request.UsuarioRequest;
 import com.estudo.cadastrousuario.api.response.UsuarioResponse;
@@ -14,6 +15,9 @@ import padroes.padroesapi.domain.Usuario;
 
 import java.net.URI;
 
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
+
 @RestController
 @RequestMapping("/usuarios")
 @RequiredArgsConstructor
@@ -24,8 +28,11 @@ public class CadastroDeUsuarios {
 
 
     @PostMapping
-    public ResponseEntity<UsuarioResponse> cadastarUsuario(@Valid @RequestBody UsuarioRequest usuarario) {
+    public ResponseEntity<UsuarioResponse> cadastarUsuario( @RequestBody UsuarioRequest usuarario) {
 
+        if(isNull(usuarario.getNome())){
+            throw new BaseException("Campo usuario não pode ser null");
+        }
         Usuario usuario = mapper.toUsuario(usuarario);
 
         return ResponseEntity.created(URI.create("/usuario")).body(mapper.toResp(usuario));
