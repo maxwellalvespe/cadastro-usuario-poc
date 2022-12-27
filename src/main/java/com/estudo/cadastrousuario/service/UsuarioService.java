@@ -1,7 +1,8 @@
-package padroes.padroesapi.service;
+package com.estudo.cadastrousuario.service;
 
-import padroes.padroesapi.domain.Usuario;
+import com.estudo.cadastrousuario.api.request.UsuarioRequest;
+import com.estudo.cadastrousuario.api.response.UsuarioResponse;
 
 public interface UsuarioService {
-    Usuario cadastrarUsuario(Usuario usuario);
+    UsuarioResponse cadastrarUsuario(UsuarioRequest usuario);
 }

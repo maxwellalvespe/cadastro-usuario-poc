@@ -1,4 +1,4 @@
-package padroes.padroesapi.domain;
+package com.estudo.cadastrousuario.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

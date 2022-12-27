@@ -3,9 +3,9 @@ package com.estudo.cadastrousuario.api.mapper;
 import com.estudo.cadastrousuario.api.conf.ModelMapperConfig;
 import com.estudo.cadastrousuario.api.request.UsuarioRequest;
 import com.estudo.cadastrousuario.api.response.UsuarioResponse;
+import com.estudo.cadastrousuario.domain.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import padroes.padroesapi.domain.Usuario;
 
 @Component
 @RequiredArgsConstructor
