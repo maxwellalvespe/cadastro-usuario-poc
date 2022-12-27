@@ -7,6 +7,9 @@
   - spring validation
   - controller Advices
   - model Mapper
+- v2
+  - Adicionar o h2 para persistencia
+  - Adicionar recurso para listar os usuários cadastrados
   
  - regras:
  
