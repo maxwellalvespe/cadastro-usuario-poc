@@ -4,11 +4,10 @@ import com.estudo.cadastrousuario.api.mapper.UsuarioMapper;
 import com.estudo.cadastrousuario.api.request.UsuarioRequest;
 import com.estudo.cadastrousuario.api.response.UsuarioResponse;
 import com.estudo.cadastrousuario.domain.Usuario;
-import com.estudo.cadastrousuario.repository.CrudRepository;
+import com.estudo.cadastrousuario.repository.UsuarioRepository;
 import com.estudo.cadastrousuario.service.UsuarioService;
+import com.estudo.cadastrousuario.service.exception.UsuarioNaoLocalizado;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 public class UsuarioServiceImpl implements UsuarioService {
 
     private final UsuarioMapper mapper;
-    private final CrudRepository repository;
+    private final UsuarioRepository repository;
 
     @Override
     public UsuarioResponse cadastrarUsuario(UsuarioRequest usuario) {
@@ -30,10 +29,20 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public List<UsuarioResponse> listarUsuarios() {
-
         return repository.findAll().stream()
-                .map(n -> mapper.toResp(n))
+                .map(mapper::toResp)
                 .collect(Collectors.toList());
 
+    }
+
+    @Override
+    public Usuario findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow( () -> new UsuarioNaoLocalizado(String.format("Usuario : %d não localizado na base de dados.",id)));
+    }
+
+    @Override
+    public void updateUsuario(Usuario usuario) {
+        repository.save(usuario);
     }
 }
