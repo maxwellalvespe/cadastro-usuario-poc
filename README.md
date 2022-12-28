@@ -2,14 +2,19 @@
 
 
 - Objetivo:
-  - validar conceitos básicos
-  - organização do projeto
-  - spring validation
-  - controller Advices
-  - model Mapper
+  - [x] validar conceitos básicos
+  - [x] organização do projeto
+  - [x] spring validation
+  - [x] controller Advices
+  - [x] model Mapper
 - v2
-  - Adicionar o h2 para persistencia
-  - Adicionar recurso para listar os usuários cadastrados
+  - [x] Adicionar o h2 para persistencia
+  - [x] Adicionar recurso para listar os usuários cadastrados
+  - [x] Incluir uma nova entidade Enquete que possui uma descricação
+  - [x] Incluir recurso para criar uma enquete
+  - [x] Incluir recurso para listrar todas as enquetes
+  - [x] Incluir recurso no usuario para se registrar a uma enqute
+  - [ ] refatorar todo o código definido na v2 e avançar/remodelar adicionando novos recursos 
   
  - regras:
  
@@ -19,3 +24,7 @@
  -  Caso as duas condições anteriores sejam validas o sistema deverá retornar um 400 'pois o erro ocorreu no
  lado do cliente' e no body deve ser enviado as exceções de cada atributo
  ```
+## observação
+
+ Está sendo adicionado TODO em algumas partes do projeto, devido as pausas 
+ durante o estudo que devem ser corrigidos até o fim dessa revisão.
