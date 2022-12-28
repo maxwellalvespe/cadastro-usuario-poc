@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "1d65754f-bb59-4511-bea1-daf2e5fceecf",
+		"name": "cadastro-cliente-poc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CADASTRAR-USUARIO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\":\"MAX\",\n    \"idade\":22,\n    \"cpf\":\"999999\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/usuarios",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LISTAR-USUARIOS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/usuarios",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CADASTRAR-ENQUETE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descricao\":\"DATA CIENCE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/enquetes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"enquetes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LISTAR-ENQUETES",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/enquetes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"enquetes"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
