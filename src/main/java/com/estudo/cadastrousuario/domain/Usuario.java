@@ -1,14 +1,13 @@
 package com.estudo.cadastrousuario.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@ToString
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -21,7 +20,7 @@ public class Usuario {
     private String cpf;
     private int idade;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     private Enquete enquete;
 
