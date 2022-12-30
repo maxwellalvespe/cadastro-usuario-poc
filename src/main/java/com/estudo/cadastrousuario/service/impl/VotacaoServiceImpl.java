@@ -13,10 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +25,8 @@ public class VotacaoServiceImpl {
 
 
     public Votacao salvar(Long idUsuario, Long idEnquete, String voto) {
+
+        verificarLegibilidadeDoVoto(idUsuario, idEnquete);
 
         Usuario usuario = usuarioRepository.findById(idUsuario).orElseThrow();
         Enquete enquete = enqueteRepository.findById(idEnquete).orElseThrow();
@@ -45,7 +44,7 @@ public class VotacaoServiceImpl {
         Map<String, Integer> votos = new HashMap<>();
 
         List<Votacao> responseDB = repository.findByEnqueteId(idEnquete)
-                .filter(f-> f.size()>0)
+                .filter(f -> f.size() > 0)
                 .orElseThrow(() -> new EnqueteNaoLocalizadaExeption(idEnquete));
 
         calcularVotosObtidos(votos, Voto.SIM, responseDB, idEnquete);
@@ -61,5 +60,18 @@ public class VotacaoServiceImpl {
                 .map(Votacao::getVoto)
                 .filter(f -> f.name().equals(voto.name())).toList().size());
 
+    }
+
+    private void verificarLegibilidadeDoVoto(Long idUsuario, Long idEnquete) {
+        repository.findByEnqueteId(idEnquete)
+                .ifPresent(m -> m.forEach(e -> {
+                    isValid(e, idUsuario);
+                }));
+    }
+
+    private void isValid(Votacao v, Long user) {
+        if (Objects.equals(v.getUsuario().getId(), user)) {
+            throw new BaseException("Usuario já efetivou o voto nessa enquete.");
+        }
     }
 }
