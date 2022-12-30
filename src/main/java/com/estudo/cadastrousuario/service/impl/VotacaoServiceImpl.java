@@ -8,7 +8,10 @@ import com.estudo.cadastrousuario.domain.enums.Voto;
 import com.estudo.cadastrousuario.repository.EnqueteRepository;
 import com.estudo.cadastrousuario.repository.UsuarioRepository;
 import com.estudo.cadastrousuario.repository.VotacaoRepository;
+import com.estudo.cadastrousuario.service.VotacaoService;
 import com.estudo.cadastrousuario.service.exception.EnqueteNaoLocalizadaExeption;
+import com.estudo.cadastrousuario.service.exception.UsuarioNaoLocalizado;
+import com.estudo.cadastrousuario.service.exception.UsuarioNaoPodeVotarNaMesmaEnqueteException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,20 +21,20 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class VotacaoServiceImpl {
+public class VotacaoServiceImpl implements VotacaoService {
     private final VotacaoRepository repository;
     private final UsuarioRepository usuarioRepository;
     private final EnqueteRepository enqueteRepository;
 
 
-    public Votacao salvar(Long idUsuario, Long idEnquete, String voto) {
+    public Votacao salvar(Long userId, Long idEnquete, Voto voto) {
 
-        verificarLegibilidadeDoVoto(idUsuario, idEnquete);
+        verificarLegibilidadeDoVoto(userId, idEnquete);
 
-        Usuario usuario = usuarioRepository.findById(idUsuario).orElseThrow();
-        Enquete enquete = enqueteRepository.findById(idEnquete).orElseThrow();
+        Usuario usuario = usuarioRepository.findById(userId).orElseThrow(() -> new UsuarioNaoLocalizado(userId));
+        Enquete enquete = enqueteRepository.findById(idEnquete).orElseThrow(() -> new EnqueteNaoLocalizadaExeption(idEnquete));
 
-        var vot = new Votacao(null, enquete, usuario, Voto.valueOf(voto.toUpperCase()));
+        var vot = new Votacao(null, enquete, usuario, voto);
         return repository.save(vot);
     }
 
@@ -71,7 +74,7 @@ public class VotacaoServiceImpl {
 
     private void isValid(Votacao v, Long user) {
         if (Objects.equals(v.getUsuario().getId(), user)) {
-            throw new BaseException("Usuario já efetivou o voto nessa enquete.");
+            throw new UsuarioNaoPodeVotarNaMesmaEnqueteException(user,v.getEnquete().getId());
         }
     }
 }

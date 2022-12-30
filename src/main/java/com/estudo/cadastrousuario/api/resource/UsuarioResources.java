@@ -21,10 +21,6 @@ public class UsuarioResources {
 
     private final UsuarioService service;
 
-    //todo fix - adicionar regra no seu devido contexto
-
-    private final EnqueteRepository enqueteRepository;
-
     @PostMapping
     public ResponseEntity<UsuarioResponse> cadastarUsuario(@Valid @RequestBody UsuarioRequest request) {
         var response = service.cadastrarUsuario(request);

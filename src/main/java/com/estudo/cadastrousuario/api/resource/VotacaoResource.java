@@ -2,7 +2,8 @@ package com.estudo.cadastrousuario.api.resource;
 
 
 import com.estudo.cadastrousuario.domain.Votacao;
-import com.estudo.cadastrousuario.service.impl.VotacaoServiceImpl;
+import com.estudo.cadastrousuario.domain.enums.Voto;
+import com.estudo.cadastrousuario.service.VotacaoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,24 +17,22 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class VotacaoResource {
 
-    private final VotacaoServiceImpl service;
+    private final VotacaoService service;
 
-    @PostMapping(path = "/{idUsuario}/enquetes/{idEnquete}/votar")
-    public ResponseEntity<Votacao> votar(@PathVariable Long idUsuario,
-                                         @PathVariable Long idEnquete,
-                                         @RequestParam String opcao) {
-
-        Votacao response = service.salvar(idUsuario, idEnquete, opcao);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    @PostMapping(path = "/usuarios/{idUsuario}/enquetes/{idEnquete}/votar")
+    public ResponseEntity<Votacao> registrarVoto(@PathVariable Long idUsuario,
+                                                 @PathVariable Long idEnquete,
+                                                 @RequestParam Voto voto) {
+        return new ResponseEntity<>(service.salvar(idUsuario, idEnquete, voto), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Votacao>> finall() {
+    public ResponseEntity<List<Votacao>> listarVotacao() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/resultados/enquete/{idEnquete}")
-    public ResponseEntity<Map<String, Integer>> votos(@PathVariable Long idEnquete) {
+    @GetMapping("/resultados/enquetes/{idEnquete}")
+    public ResponseEntity<Map<String, Integer>> exibirResultado(@PathVariable Long idEnquete) {
         return new ResponseEntity<>(service.resultadoVotacao(idEnquete), HttpStatus.OK);
 
     }

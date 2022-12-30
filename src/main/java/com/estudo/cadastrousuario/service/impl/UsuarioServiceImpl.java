@@ -7,6 +7,7 @@ import com.estudo.cadastrousuario.domain.Usuario;
 import com.estudo.cadastrousuario.repository.UsuarioRepository;
 import com.estudo.cadastrousuario.service.UsuarioService;
 import com.estudo.cadastrousuario.service.exception.UsuarioNaoLocalizado;
+import com.estudo.cadastrousuario.service.exception.UsuarioPossuiCadastroVinculadoAoCpfException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +23,17 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public UsuarioResponse cadastrarUsuario(UsuarioRequest usuario) {
+
+        validacaoDoUsuario(usuario);
         Usuario usuarioEntity = repository.save(mapper.toUsuario(usuario));
         return mapper.toResp(usuarioEntity);
 
+    }
+
+    private void validacaoDoUsuario(UsuarioRequest usuario) {
+        if (repository.findByCpf(usuario.getCpf()).isPresent()) {
+            throw new UsuarioPossuiCadastroVinculadoAoCpfException(usuario.getCpf());
+        }
     }
 
     @Override
@@ -38,11 +47,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario findById(Long id) {
         return repository.findById(id)
-                .orElseThrow( () -> new UsuarioNaoLocalizado(String.format("Usuario : %d não localizado na base de dados.",id)));
+                .orElseThrow(() -> new UsuarioNaoLocalizado(id));
     }
 
-//    @Override
-//    public void updateUsuario(Usuario usuario) {
-//        repository.save(usuario);
-//    }
 }
