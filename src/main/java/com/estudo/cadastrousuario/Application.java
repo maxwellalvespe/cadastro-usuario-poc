@@ -8,7 +8,6 @@ import com.estudo.cadastrousuario.repository.EnqueteRepository;
 import com.estudo.cadastrousuario.repository.UsuarioRepository;
 import com.estudo.cadastrousuario.repository.VotacaoRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
