@@ -1,7 +1,7 @@
 package com.estudo.cadastrousuario.api.resource;
 
 import com.estudo.cadastrousuario.domain.Enquete;
-import com.estudo.cadastrousuario.repository.EnqueteRepository;
+import com.estudo.cadastrousuario.service.EnqueteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,17 +15,16 @@ import java.util.List;
 public class EnqueteResources {
 
 
-    private final EnqueteRepository enqueteRepository;
+    private final EnqueteService service;
 
     @PostMapping()
-    public ResponseEntity<?> vincularenqueteAoUsuario(@RequestBody Enquete enquete) {
-        var response = enqueteRepository.save(enquete);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    public ResponseEntity<?> cadastrarEnquete(@RequestBody Enquete enquete) {
+        return new ResponseEntity<>(service.salvar(enquete), HttpStatus.CREATED);
     }
 
 
     @GetMapping
-    public ResponseEntity<List<Enquete>> obterEnquetes(){
-        return  new ResponseEntity<>(enqueteRepository.findAll(),HttpStatus.OK);
+    public ResponseEntity<List<Enquete>> obterEnquetes() {
+        return new ResponseEntity<>(service.listar(), HttpStatus.OK);
     }
 }

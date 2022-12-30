@@ -1,18 +1,16 @@
 package com.estudo.cadastrousuario.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
+@ToString
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 public class Enquete {
@@ -22,8 +20,12 @@ public class Enquete {
     private Long id;
     private String descricao;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "enquete", cascade = CascadeType.ALL)
-    private List<Usuario> usuarios = new ArrayList<>();
+//    @OneToOne
+//    @JsonIgnore
+//    private Votacao voto;
+
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    private List<Usuario> usuarios = new ArrayList<>();
+
 }
 
