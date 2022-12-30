@@ -41,8 +41,8 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .orElseThrow( () -> new UsuarioNaoLocalizado(String.format("Usuario : %d não localizado na base de dados.",id)));
     }
 
-    @Override
-    public void updateUsuario(Usuario usuario) {
-        repository.save(usuario);
-    }
+//    @Override
+//    public void updateUsuario(Usuario usuario) {
+//        repository.save(usuario);
+//    }
 }

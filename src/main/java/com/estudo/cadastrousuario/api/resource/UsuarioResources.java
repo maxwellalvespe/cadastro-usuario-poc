@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -38,20 +39,4 @@ public class UsuarioResources {
         return new ResponseEntity<>(service.listarUsuarios(), HttpStatus.OK);
     }
 
-    @PutMapping(path = {"/{id}"})
-    public ResponseEntity<?> ParticiparDaEnquete(
-            @PathVariable Long id,
-            @PathParam("enquete") Long enquete) {
-
-        //todo fix - adicionar regra no seu devido contexto
-        var enqueteObtida = enqueteRepository.findById(enquete).orElseThrow();
-
-        var usuario = service.findById(id);
-
-        usuario.setEnquete(enqueteObtida);
-
-        service.updateUsuario(usuario);
-
-        return new ResponseEntity<>(enquete, HttpStatus.OK);
-    }
 }

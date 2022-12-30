@@ -21,16 +21,12 @@ public class Enquete {
     private Long id;
     private String descricao;
 
-    @OneToOne
-    @JsonIgnore
-    private Votacao voto;
+//    @OneToOne
+//    @JsonIgnore
+//    private Votacao voto;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Usuario> usuarios = new ArrayList<>();
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    private List<Usuario> usuarios = new ArrayList<>();
 
-    public Enquete(Long id, String descricao) {
-        this.id = id;
-        this.descricao = descricao;
-    }
 }
 
