@@ -13,7 +13,7 @@ public class ApiExceptionHandler {
     @ExceptionHandler(value = {BaseException.class})
     public ResponseEntity<Object> handlerRequestException(BaseException exception) {
 
-        ApiException payloadDetails = new ApiException(exception.getMessage(), exception.getCause(), HttpStatus.BAD_REQUEST, ZonedDateTime.now(ZoneId.of("Z")));
+        ApiException payloadDetails = new ApiException(exception.getMessage(), HttpStatus.BAD_REQUEST, ZonedDateTime.now(ZoneId.of("Z")));
 
         return new ResponseEntity<>(payloadDetails, HttpStatus.BAD_REQUEST);
     }
