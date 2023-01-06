@@ -24,6 +24,8 @@
     - efetivar voto em uma enquete inexistente
   - [x] adicionado recurso para totalizar os votos por enquete
   - [x] adicionar recurso para listar todos os votos e seus relacionamentos.
+  - [x] Inclusão do rabbitMq para poder consumir os dados da votação de uma fila que é produzida pelo projeto : 
+    https://github.com/maxwellalvespe/rabbitmq-producer 'PENDENTE - atualizar o dto do producer para poder realizar o mapeamento no ms-votação e persistir os dados na base de dados'
   
  - regras:
  
