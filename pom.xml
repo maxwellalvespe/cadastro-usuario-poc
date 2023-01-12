@@ -9,12 +9,12 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.estudo</groupId>
-	<artifactId>cadastrousuario</artifactId>
+	<artifactId>votacao</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>cadastrousuario</name>
+	<name>votacao</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>19</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -52,8 +52,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.6.14</version>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.amqp</groupId>

@@ -27,7 +27,7 @@ public class VotacaoServiceImpl implements VotacaoService {
     private final EnqueteRepository enqueteRepository;
 
 
-    public Votacao salvar(Long userId, Long idEnquete, Voto voto) {
+    public Votacao salvar(Long userId, Long idEnquete, Voto voto) throws UsuarioNaoLocalizado, EnqueteNaoLocalizadaExeption {
 
         verificarLegibilidadeDoVoto(userId, idEnquete);
 
@@ -74,7 +74,7 @@ public class VotacaoServiceImpl implements VotacaoService {
 
     private void isValid(Votacao v, Long user) {
         if (Objects.equals(v.getUsuario().getId(), user)) {
-            throw new UsuarioNaoPodeVotarNaMesmaEnqueteException(user,v.getEnquete().getId());
+            throw new UsuarioNaoPodeVotarNaMesmaEnqueteException(user, v.getEnquete().getId());
         }
     }
 }

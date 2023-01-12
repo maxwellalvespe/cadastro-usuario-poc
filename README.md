@@ -24,7 +24,8 @@
     - efetivar voto em uma enquete inexistente
   - [x] adicionado recurso para totalizar os votos por enquete
   - [x] adicionar recurso para listar todos os votos e seus relacionamentos.
-  
+  - [x] atualiazado o context do projeto para /ms-votacao
+  - [x] adicionaro o swagger para exibir os recursos disponivels na seguinte url http://localhost:9098/ms-votacao/swagger-ui/index.html
  - regras:
  
  ```
