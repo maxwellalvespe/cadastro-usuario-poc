@@ -26,6 +26,9 @@
   - [x] adicionar recurso para listar todos os votos e seus relacionamentos.
   - [x] atualiazado o context do projeto para /ms-votacao
   - [x] adicionaro o swagger para exibir os recursos disponivels na seguinte url http://localhost:9098/ms-votacao/swagger-ui/index.html
+  - [x] Inclusão do rabbitMq para poder consumir os dados da votação de uma fila que é produzida pelo projeto : 
+    https://github.com/maxwellalvespe/rabbitmq-producer 'PENDENTE - atualizar o dto do producer para poder realizar o mapeamento no ms-votação e persistir os dados na base de dados'
+
  - regras:
  
  ```
