@@ -1,6 +1,5 @@
 package com.estudo.cadastrousuario.service.impl;
 
-import com.estudo.cadastrousuario.api.exception.BaseException;
 import com.estudo.cadastrousuario.domain.Enquete;
 import com.estudo.cadastrousuario.domain.Usuario;
 import com.estudo.cadastrousuario.domain.Votacao;
@@ -16,7 +15,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
