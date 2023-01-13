@@ -2,7 +2,6 @@ package com.estudo.cadastrousuario.api.resource;
 
 import com.estudo.cadastrousuario.api.request.UsuarioRequest;
 import com.estudo.cadastrousuario.api.response.UsuarioResponse;
-import com.estudo.cadastrousuario.repository.EnqueteRepository;
 import com.estudo.cadastrousuario.service.UsuarioService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
